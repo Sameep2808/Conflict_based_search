@@ -238,7 +238,40 @@ def get_input():
 	return [x,y],[xg,yg],1,sa,ga
 
 
+def Vig(O,OP,P):
+	fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+	out = cv2.VideoWriter("Output.mp4", fourcc, 10, (400,250))
+
+	for c,p in zip(O,OP):
+		x,y = c
+		px,py = p
+		cv2.arrowedLine(am, (round(px), round(ymax-py)), (round(x), round(ymax-y)),(255,255,255), 1, 1, 0, 0.1)
+		out.write(np.uint8(am))
+		cv2.imshow("Output", am)
+		cv2.waitKey(1)
+	for z in P:
+		x,y = z.d
+		px,py = z.pxy
+		cv2.arrowedLine(am, (round(px), round(ymax-py)), (round(x), round(ymax-y)),(255,0,255), 1, 1, 0, 0.1)
+		out.write(np.uint8(am))
+		cv2.imshow("Output", am)
+		cv2.waitKey(1)
+	cv2.imshow("Final Path", am)
+	cv2.waitKey(0)
+	out.release()
+	cv2.destroyAllWindows()
+
+def graph(O,OP):
+	for c,p in zip(O,OP):
+		x,y = c
+		px,py = p
+		cv2.arrowedLine(am1, (round(px), round(249-py)), (round(x), round(249-y)),(255,255,255), 1, 1, 0, 0.1)
+	# cv2.imshow("Output", am1)
+	# cv2.waitKey(0)
+
 def VM(P1,P2,P3,P4):
+	fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+	out = cv2.VideoWriter("Output.mp4", fourcc, 10, (400,250))
 	ma = max(len(P1),len(P2),len(P3),len(P4))
 	
 	if ma != len(P1):
@@ -255,16 +288,16 @@ def VM(P1,P2,P3,P4):
 		P4 = P4 + l
 	for z,z2,z3,z4 in zip(P1,P2,P3,P4):
 		x,y = z.d
-		
 		px,py = z.pxy
 		fm = am.copy()
 		fm = cv2.circle(fm, (int(x),int(249-y)), 3, (0,0,255), -1)
 		x2,y2 = z2.d
 		fm = cv2.circle(fm, (int(x2),int(249-y2)), 3, (255,255,0), -1)
 		x2,y2 = z3.d
-		fm = cv2.circle(fm, (int(x2),int(249-y2)), 3, (255,0,0), -1)
+		fm = cv2.circle(fm, (int(x2),int(249-y2)), 3, (0,255,255), -1)
 		x2,y2 = z4.d
 		fm = cv2.circle(fm, (int(x2),int(249-y2)), 3, (0,255,0), -1)
+		out.write(np.uint8(fm))
 		cv2.imshow("Output", fm)
 		cv2.waitKey(100)
 	cv2.imshow("Final Path", fm)
@@ -295,13 +328,14 @@ def cbs():
 	while(True):
 		# start,goal,L,sa,ga=get_input()
 		sa = 0
-		ga =0 
+		ga = 0 
 		L = 5
 		start = [10,30]
 		goal = [380,30]
 		root = Node(start, sa, 0 , None, 0, start, 0)
 		F,C,O,Pxy = DS(root,goal,L,ga)
 		p1=reverse_path(F)
+		graph(O,Pxy)
 		# start,goal,L,sa,ga=get_input()
 		start = [50,10]
 		goal = [50,239]
@@ -309,6 +343,7 @@ def cbs():
 		root1 = Node(start, sa, 0 , None, 0, start, 0)
 		F,C,O,Pxy = DS(root1,goal,L,ga)
 		p2=reverse_path(F)
+		graph(O,Pxy)
 
 		start = [10,10]
 		goal = [300,240]
@@ -316,6 +351,7 @@ def cbs():
 		root1 = Node(start, sa, 0 , None, 0, start, 0)
 		F,C,O,Pxy = DS(root1,goal,L,ga)
 		p3=reverse_path(F)
+		graph(O,Pxy)
 
 		start = [380,50]
 		goal = [150,150]
@@ -323,12 +359,14 @@ def cbs():
 		root1 = Node(start, sa, 0 , None, 0, start,0)
 		F,C,O,Pxy = DS(root1,goal,L,ga)
 		p4=reverse_path(F)
+		graph(O,Pxy)
 
 		VM(p1,p2,p3,p4)
 		break
 
 if __name__ == '__main__':
 	m,am = create_map()
+	am1 = am.copy()
 	global cll
 	global rr
 	cll,rr = 5,5
