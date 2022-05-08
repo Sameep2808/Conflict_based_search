@@ -4,6 +4,8 @@
 ## Authors
 - [Sameep Pote](https://github.com/Sameep2808) - Graduate student at University of Maryland pursuing M.Eng. Robotics.Loves to watch animes.
 
+- [Jon](https://github.com/jkreinb) - Graduate student at University of Maryland pursuing M.Eng. Robotics.
+
 URL: https://github.com/Sameep2808/dijkstra.git
 
 ## License
@@ -34,10 +36,6 @@ SOFTWARE.
 
 ## Output
 
-### Inputs
-Start Point = (10,10)
-Goal = (389,239)
-
 ### Visualization
 ![g1](https://github.com/Sameep2808/A-/blob/main/Videos/g1.gif)
 ### Path
@@ -53,32 +51,10 @@ Goal = (389,239)
 
 1. Download the repository in src folder of catkin workspace
 ```
-git clone https://github.com/Sameep2808/A-
+git clone https://github.com/Sameep2808/Conflict_based_search
 ```
 2. Run the python file
 ```
-python3 Sameep_Pote.py 
+python3 CBS.py 
 ```
-3. Enter the Initial And goal values
-```
-Enter Clearence:
-5
-Enter Robot Radius:
-5
-Enter movement length:
-10
-Enter Initial X (Range: 0 - 399):
-10
-Enter Initial Y (Range: 0 - 249):
-10
-Enter Start Angle:
-0
-Enter Goal X (Range: 0 - 399):
-389
-Enter Goal Y (Range: 0 - 249):
-239
-Enter Goal Angle:
-0
-```
-4. Wait For the Output
 
