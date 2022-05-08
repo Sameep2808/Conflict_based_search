@@ -37,9 +37,9 @@ SOFTWARE.
 ## Output
 
 ### Visualization
-![g1](https://github.com/Sameep2808/A-/blob/main/Videos/g1.gif)
+![g1](https://github.com/Sameep2808/Conflict_based_search/blob/main/Videos/g1.gif)
 ### Path
-![p1](https://github.com/Sameep2808/A-/blob/main/Videos/p1)
+![p1](https://github.com/Sameep2808/Conflict_based_search/blob/main/Videos/p1.png)
 
 ## Dependencies and Technologies used
 
